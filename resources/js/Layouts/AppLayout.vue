@@ -23,35 +23,210 @@ const items = ref([
         command: () => {router.get(route('dashboard'))}
     },
     {
-        label: 'Menu1',
-        icon: 'pi pi-star'
-    },
-    {
-        label: 'Menu2',
-        icon: 'pi pi-search',
+        label: 'Maestros',
+        icon: 'pi pi-star',
         items: [
             {
-                label: 'SubMenu1',
+                label: 'Configuración Formularios',
                 icon: 'pi pi-bolt'
             },
             {
-                label: 'SubMenu2',
-                icon: 'pi pi-bolt'
-            },
-            {
-                label: 'SubMenu3',
-                icon: 'pi pi-bolt'
-            },
-            {
-                label: 'SubMenu4',
-                icon: 'pi pi-palette',
+                label: 'Ubicación Geografica',
+                icon: 'pi pi-bolt',
                 items: [
                     {
-                        label: 'SubSubMenu1',
+                        label: 'Paises',
                         icon: 'pi pi-palette'
                     },
                     {
-                        label: 'SubSubMenu1',
+                        label: 'Departamentos / Estados',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Ciudad',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Barrios',
+                        icon: 'pi pi-palette'
+                    }
+                ]
+            },
+            {
+                label: 'Hojas de Vida',
+                icon: 'pi pi-bolt',
+                items: [
+                    {
+                        label: 'Registros',
+                        icon: 'pi pi-palette',
+                        items: [
+                                {
+                                    label: 'Datos Generales',
+                                    icon: 'pi pi-palette'
+                                },
+                                {
+                                    label: 'Datos Familiares',
+                                    icon: 'pi pi-palette'
+                                },
+                                {
+                                    label: 'Estudios Realizados',
+                                    icon: 'pi pi-palette'
+                                },
+                                {
+                                    label: 'Experiencia Laboral',
+                                    icon: 'pi pi-palette'
+                                },
+                                {
+                                    label: 'Referencias',
+                                    icon: 'pi pi-palette'
+                                }
+                            ]
+                    },
+                    {
+                        label: 'Estratos',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Nivel Educativo',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Profesiones',
+                        icon: 'pi pi-palette'
+                    }
+                ]
+            },
+            {
+                label: 'Nomina',
+                icon: 'pi pi-bolt',
+                items: [
+                    {
+                        label: 'Agrupaciones',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Centro de Costos',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Divisiones',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Sedes',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Sucursales',
+                                icon: 'pi pi-palette'
+                            }
+                            ,
+                            {
+                                label: 'Sucursal PILA',
+                                icon: 'pi pi-palette'
+                            },
+                        ]
+                    },
+                    {
+                        label: 'Cargos',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Conceptos de ReteFuente',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Fondos de Solidaridad',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Motivo de Retiro',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Novedades',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Conceptos de Novedades',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Conceptos por Empresas',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Rubro Contable',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Asignación Contable',
+                                icon: 'pi pi-palette'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Oficina de Juzgados',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Registros UVT',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'SubTipo de Cotizaciones',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Tipo de Aportante',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Tipos de Contratos',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Tipos de Cotizantes',
+                        icon: 'pi pi-palette'
+                    }
+                ]
+            },
+            {
+                label: 'Terceros',
+                icon: 'pi pi-bolt',
+                items: [
+                    {
+                        label: 'Registros de Terceros',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Configuración Cliente',
+                        icon: 'pi pi-palette',
+                        items: [
+                            {
+                                label: 'Modalidad de Nomina',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Configuración de Certificados',
+                                icon: 'pi pi-palette'
+                            },
+                            {
+                                label: 'Configuración Envios de Correos',
+                                icon: 'pi pi-palette'
+                            }
+                        ]
+                    },
+                    {
+                        label: 'Empresas PILA',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Cuentas Bancarias',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Comunicaciones',
                         icon: 'pi pi-palette'
                     }
                 ]
@@ -59,8 +234,177 @@ const items = ref([
         ]
     },
     {
-        label: 'Menu3',
-        icon: 'pi pi-envelope'
+        label: 'Contratación',
+        icon: 'pi pi-search',
+        items: [
+            {
+                label: 'Inscripción a la Empresa',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Registro del Contrato',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Prorroga',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Termino',
+                icon: 'pi pi-bolt'
+            }
+        ]
+    },
+    {
+        label: 'Novedades',
+        icon: 'pi pi-envelope',
+        items: [
+            {
+                label: 'Embargos',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Fondos / Ahorros',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Horas Extras',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Ingresos o Descuentos Consecutivos',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Retención en la Fuente',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Otros Ingresos o Descuentos',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Prestamos',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Seguridad Social',
+                icon: 'pi pi-bolt',
+                items: [
+                    {
+                        label: 'Aportes Voluntarios',
+                        icon: 'pi pi-palette'
+                    },
+                    {
+                        label: 'Registros de Novedades',
+                        icon: 'pi pi-palette'
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        label: 'Ejecuciones',
+        icon: 'pi pi-envelope',
+        items: [
+            {
+                label: 'Nomina',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Seguridad Social',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Liquidación de Vacaciones',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Liquidación de Prestaciones Sociales',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Liquidación de Contrato',
+                icon: 'pi pi-bolt'
+            }
+        ]
+},
+    {
+        label: 'Informes',
+        icon: 'pi pi-envelope',
+        items: [
+            {
+                label: 'Analisis Nomina',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Analisis Seguridad Social',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Transferencias Bancarias',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Transferencias Contables',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Buscador Nomina',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Buscador Hoja de Vida',
+                icon: 'pi pi-bolt'
+            }
+            ,
+            {
+                label: 'Certificados de Retencion en la Fuente',
+                icon: 'pi pi-bolt'
+            }
+        ]
+    },
+    {
+        label: 'Seguridad',
+        icon: 'pi pi-envelope',
+        items: [
+            {
+                label: 'Login',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Auditoria',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Registros de Usuarios',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Cambio de Contraseña',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Nivel de Seguridad por Usuario',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Nivel de Seguridad por Roll',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Calendario',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Registrar Mensajes',
+                icon: 'pi pi-bolt'
+            },
+            {
+                label: 'Ruta de Folder',
+                icon: 'pi pi-bolt'
+            }
+        ]
     }
 ])
 
