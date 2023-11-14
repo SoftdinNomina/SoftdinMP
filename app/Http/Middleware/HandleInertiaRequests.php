@@ -37,7 +37,9 @@ class HandleInertiaRequests extends Middleware
     public function share(Request $request): array
     {
         return array_merge(parent::share($request), [
-            //
+            // Provide the reCAPTCHA site key to the front-end.
+            'recaptchav2_sitekey' => config('recaptchav2.sitekey'),
+            // DO NOT SHARE RECAPTCHAV2_SECRET.
         ]);
     }
 }

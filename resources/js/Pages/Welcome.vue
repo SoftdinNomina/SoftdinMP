@@ -1,6 +1,6 @@
 <script setup>
 import { Head, Link } from '@inertiajs/vue3';
-import { defineComponent, h } from 'vue'
+import { defineComponent, ref, h } from 'vue'
 import {
     Popover,
     PopoverButton,
@@ -29,6 +29,10 @@ import {
     BuildingOffice2Icon,
     UserIcon
 } from '@heroicons/vue/24/outline';
+import { Checkbox, useRecaptchaProvider } from 'vue-recaptcha/head';
+useRecaptchaProvider()
+const recaptcha_error = ref();
+const response = ref()
 
 defineProps({
     canLogin: Boolean,
@@ -155,7 +159,7 @@ const features = [
                                 </PopoverPanel>
                             </transition>
                         </Popover>
-                        <a href="#contacts" class="text-base font-medium text-gray-500 hover:text-gray-900">Contacto</a>
+                        <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">Contacto</a>
                         <a href="#" class="text-base font-medium text-gray-500 hover:text-gray-900">WebMail</a>
                     </PopoverGroup>
                     <div class="items-center justify-end hidden md:flex md:flex-1 lg:w-0" >
@@ -293,7 +297,7 @@ const features = [
                                 </p>
                                 <div class="max-w-sm mx-auto mt-10 sm:flex sm:max-w-none sm:justify-center">
                                     <div class="space-y-4 sm:mx-auto sm:inline-grid sm:grid-cols-1 sm:gap-5 sm:space-y-0">
-                                        <a href="#Contacto"
+                                        <a href="#contacts"
                                             class="flex items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-4 py-3 text-base font-medium text-white shadow-sm hover:from-[#01e6f8] hover:to-[#57c274] sm:px-8">
                                             Contáctanos
                                         </a>
@@ -410,11 +414,19 @@ const features = [
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="flex justify-end mt-2">
+                                    <div class="sm:col-span-2 sm:col-start-1">
+                                        <div class="mt-2">
+                                            <Checkbox v-model="response" />
+                                        </div>
+                                        <span v-if="recaptcha_error" class="error-message flex justify-around">
+                                            Confirma que no eres un robot</span>
+
+                                        <div class="mt-2">
                                         <button type="submit"
                                             class="rounded-md bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#57c274] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#57c274]">
                                             Enviar
                                         </button>
+                                        </div>
                                     </div>
                                 </div>
                             </form>
