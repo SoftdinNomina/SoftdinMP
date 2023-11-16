@@ -42,24 +42,24 @@ const props = defineProps({
 });
 
 const downloads = [
-    {
-        name: 'Nomina',
-        description: 'Escriba aqui una descripcion de nomina.',
-        href: '#',
-        icon: UsersIcon,
-    },
-    {
-        name: 'Presupuesto',
-        description: 'Escriba aqui una descripcion de presupuesto.',
-        href: '#',
-        icon: CurrencyDollarIcon,
-    },
-    {
-        name: 'Virtual',
-        description: "Escriba aqui una descripcion de virtual.",
-        href: '#',
-        icon: AtSymbolIcon,
-    },
+    // {
+    //     name: 'Nomina',
+    //     description: 'Escriba aqui una descripcion de nomina.',
+    //     href: '#',
+    //     icon: UsersIcon,
+    // },
+    // {
+    //     name: 'Presupuesto',
+    //     description: 'Escriba aqui una descripcion de presupuesto.',
+    //     href: '#',
+    //     icon: CurrencyDollarIcon,
+    // },
+    // {
+    //     name: 'Virtual',
+    //     description: "Escriba aqui una descripcion de virtual.",
+    //     href: '#',
+    //     icon: AtSymbolIcon,
+    // },
     {
         name: 'Android',
         description: "Escriba aqui una descripcion de android.",
@@ -110,7 +110,7 @@ const formContacto = useForm({
 })
 
 const enviaDatos = () => {
-    recaptcha_error = false
+    recaptcha_error.value = false
     console.table(formContacto)
 }
 //#region botones scroll
@@ -244,9 +244,11 @@ function scroll_right() {
                             <div class="px-5 pt-5 pb-6">
                                 <div class="flex items-center justify-between">
                                     <div>
+                                        <a href="#welcomePanel">
                                         <p class="font-sans text-4xl font-black text-transparent uppercase bg-clip bg-gradient-to-r from-[#57c274] to-[#01e6f8]"
                                             style="-webkit-background-clip: text;">
                                             SOFTDIN</p>
+                                        </a>
                                     </div>
                                     <div class="-mr-2">
                                         <PopoverButton
@@ -280,14 +282,14 @@ function scroll_right() {
                                         class="text-base font-medium text-gray-900 hover:text-gray-700">WebMail</a>
                                 </div>
                                 <div class="mt-6" v-if="canLogin">
-                                    <a href="#"
+                                    <a :href="route('login')"
                                         class="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8] bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-[#01e6f8] hover:to-[#57c274]">
                                         <BuildingOffice2Icon class="w-5 h-5 mr-3 text-white group-hover:text-gray-500"
                                             aria-hidden="true" />
                                         Portal de empresa
                                     </a>
                                     <p class="mt-6 text-base font-medium text-center text-gray-500">
-                                        <a href="#"
+                                        <a :href="route('login')"
                                             class="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8] bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-[#01e6f8] hover:to-[#57c274]">
                                             <UsersIcon class="w-5 h-5 mr-3 text-white group-hover:text-gray-500"
                                                 aria-hidden="true" />
@@ -354,7 +356,7 @@ function scroll_right() {
                             </button>
                             <div class="flex gap-2 p-1 overflow-y-auto snap-mandatory snap-x wrapper-box">
                                 <div v-for="feature in features" :key="feature.name"
-                                    class="border border-gray-100 min-w-[60vw] sm:min-w-[28vw] snap-center bg-white bg-opacity-10 rounded-lg text-center p-2">
+                                    class="border border-gray-100 shadow-md min-w-[60vw] sm:min-w-[28vw] snap-center bg-white bg-opacity-10 rounded-lg text-center p-2">
                                     <div class="flex items-center gap-2">
                                         <span
                                             class="flex items-center justify-center w-12 h-12 bg-white rounded-md bg-opacity-10">

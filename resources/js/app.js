@@ -7,7 +7,7 @@ import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import PrimeVue from 'primevue/config';
 import { VueRecaptchaPlugin } from 'vue-recaptcha/head';
-
+import 'primevue/resources/themes/saga-green/theme.css'
 const appName = import.meta.env.VITE_APP_NAME || 'Laravel';
 
 createInertiaApp({
