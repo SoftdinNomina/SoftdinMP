@@ -1,5 +1,5 @@
 <script setup>
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm } from '@inertiajs/vue3';
 import { ref } from 'vue'
 import {
     Popover,
@@ -13,6 +13,8 @@ import {
 } from '@headlessui/vue';
 
 import {
+    ArrowLeftCircleIcon,
+    ArrowRightCircleIcon,
     ArrowUturnLeftIcon,
     Bars3Icon,
     DocumentChartBarIcon,
@@ -25,23 +27,19 @@ import {
     AtSymbolIcon,
     DevicePhoneMobileIcon,
     ChevronDownIcon,
-    DocumentDuplicateIcon,
-    BuildingOffice2Icon,
-    UserIcon
+    BuildingOffice2Icon
 } from '@heroicons/vue/24/outline';
 import { Checkbox, useRecaptchaProvider } from 'vue-recaptcha/head';
 useRecaptchaProvider()
-const recaptcha_error = ref();
+const recaptcha_error = ref(false);
 const response = ref()
 
-defineProps({
+const props = defineProps({
     canLogin: Boolean,
     canRegister: Boolean,
     laravelVersion: String,
     phpVersion: String,
 });
-
-
 
 const downloads = [
     {
@@ -101,6 +99,31 @@ const features = [
         icon: ArrowUturnLeftIcon,
     }
 ]
+
+const formContacto = useForm({
+    nombres: '',
+    apellidos: '',
+    email: null,
+    telefono: null,
+    mensaje: '',
+    googleRecaptcha: null
+})
+
+const enviaDatos = () => {
+    recaptcha_error = false
+    console.table(formContacto)
+}
+//#region botones scroll
+
+function scroll_left() {
+    let content = document.querySelector(".wrapper-box");
+    content.scrollLeft -= 300;
+}
+function scroll_right() {
+    let content = document.querySelector(".wrapper-box");
+    content.scrollLeft += 300;
+}
+//#endregion
 
 </script>
 
@@ -326,22 +349,29 @@ const features = [
                             liquidación de las prestaciones sociales y seguridad social, para empresas y cooperativas de
                             trabajo
                             asociado.</p>
-                        <div class="flex gap-2 mt-12 overflow-y-auto">
-                            <div v-for="feature in features" :key="feature.name"
-                                class="border border-gray-100 min-w-[50vw] sm:min-w-[30vw] bg-white bg-opacity-10 rounded-lg text-center p-2">
-                                <div class="flex items-center gap-2">
-                                    <span
-                                        class="flex items-center justify-center w-12 h-12 bg-white rounded-md bg-opacity-10">
-                                        <component :is="feature.icon" class="w-6 h-6 text-white" aria-hidden="true" />
-                                    </span>
-                                    <h3 class="w-full text-lg font-black text-white">{{ feature.name }}</h3>
-                                </div>
-                                <div class="mt-6">
-                                    <p class="mt-2 text-base text-white">{{ feature.description }}</p>
+                        <div class="flex mt-12 space-x-2">
+                            <button @click="scroll_left">
+                                <ArrowLeftCircleIcon class="w-8 h-8 text-white hover:animate-pulse hover:scale-105"/>
+                            </button>
+                            <div class="flex gap-2 p-1 overflow-y-auto snap-mandatory snap-x wrapper-box">
+                                <div v-for="feature in features" :key="feature.name"
+                                    class="border border-gray-100 min-w-[60vw] sm:min-w-[28vw] snap-center bg-white bg-opacity-10 rounded-lg text-center p-2">
+                                    <div class="flex items-center gap-2">
+                                        <span
+                                            class="flex items-center justify-center w-12 h-12 bg-white rounded-md bg-opacity-10">
+                                            <component :is="feature.icon" class="w-6 h-6 text-white" aria-hidden="true" />
+                                        </span>
+                                        <h3 class="w-full text-lg font-black text-white">{{ feature.name }}</h3>
+                                    </div>
+                                    <div class="h-[20vh] flex align-middle items-center mt-6">
+                                        <p class="mt-2 text-base text-white">{{ feature.description }}</p>
+                                    </div>
                                 </div>
                             </div>
+                            <button @click="scroll_right">
+                                <ArrowRightCircleIcon class="w-8 h-8 text-white hover:animate-pulse hover:scale-105"/>
+                            </button>
                         </div>
-
                     </div>
                     <a name="contacts"></a>
                 </div>
@@ -357,76 +387,82 @@ const features = [
                             </span>
                         </h2>
                         <div class="space-y-4 sm:flex sm:space-x-5 sm:space-y-0">
-                            <form action="#" method="POST" class="">
-                                <div class="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
-                                    <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
-                                        <div>
-                                            <label for="first-name"
-                                                class="block text-sm font-semibold leading-6 text-gray-900">
-                                                Nombres
-                                            </label>
-                                            <div class="mt-1">
-                                                <input type="text" name="first-name" id="first-name"
-                                                    autocomplete="given-name"
-                                                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
-                                            </div>
+                            <div class="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
+                                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                                    <div>
+                                        <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">
+                                            Nombres
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="text" name="first-name" id="first-name" autocomplete="given-name"
+                                                v-model="formContacto.nombres"
+                                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
+                                            <div v-if="formContacto.errors.nombres">{{ formContacto.errors.nombres }}</div>
                                         </div>
-                                        <div>
-                                            <label for="last-name"
-                                                class="block text-sm font-semibold leading-6 text-gray-900">
-                                                Apellidos
-                                            </label>
-                                            <div class="mt-1">
-                                                <input type="text" name="last-name" id="last-name"
-                                                    autocomplete="family-name"
-                                                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
-                                            </div>
-                                        </div>
-                                        <div class="sm:col-span-2">
-                                            <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
-                                                Email
-                                            </label>
-                                            <div class="mt-1">
-                                                <input type="email" name="email" id="email" autocomplete="email"
-                                                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
-                                            </div>
-                                        </div>
-                                        <div class="sm:col-span-2">
-                                            <label for="phone-number"
-                                                class="block text-sm font-semibold leading-6 text-gray-900">
-                                                Telefono
-                                            </label>
-                                            <div class="mt-1">
-                                                <input type="tel" name="phone-number" id="phone-number" autocomplete="tel"
-                                                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
-                                            </div>
-                                        </div>
-                                        <div class="sm:col-span-2">
-                                            <label for="message"
-                                                class="block text-sm font-semibold leading-6 text-gray-900">
-                                                Mensaje
-                                            </label>
-                                            <div class="mt-1">
-                                                <textarea name="message" id="message" rows="4"
-                                                    class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
-                                            </div>
-                                        </div>
-                                        <div class="flex items-center h-full align-middle sm:grid sm:grid-cols-2 sm:col-span-2">
-                                            <div>
-                                                <Checkbox v-model="response" />
-                                                <span v-if="recaptcha_error" class="flex justify-around error-message">
-                                                    Confirma que no eres un robot</span>
-                                            </div>
-                                            <div class="flex justify-center w-full p-3 sm:flex sm:justify-end sm:p-3">
-                                                <button type="submit"
-                                                    class="w-full h-full sm:h-auto sm:w-auto rounded-md bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-3.5 py-2.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-[#57c274] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#57c274]">
-                                                    Enviar
-                                                </button>
+                                    </div>
+                                    <div>
+                                        <label for="last-name" class="block text-sm font-semibold leading-6 text-gray-900">
+                                            Apellidos
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="text" name="last-name" id="last-name" autocomplete="family-name"
+                                                v-model="formContacto.apellidos"
+                                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
+                                            <div v-if="formContacto.errors.apellidos">{{ formContacto.errors.apellidos }}
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="email" class="block text-sm font-semibold leading-6 text-gray-900">
+                                            Email
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="email" name="email" id="email" autocomplete="email"
+                                                v-model="formContacto.email"
+                                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
+                                            <div v-if="formContacto.errors.email">{{ formContacto.errors.email }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="phone-number"
+                                            class="block text-sm font-semibold leading-6 text-gray-900">
+                                            Telefono
+                                        </label>
+                                        <div class="mt-1">
+                                            <input type="tel" name="phone-number" id="phone-number" autocomplete="tel"
+                                                v-model="formContacto.telefono"
+                                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
+                                            <div v-if="formContacto.errors.telefono">{{ formContacto.errors.telefono }}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="sm:col-span-2">
+                                        <label for="message" class="block text-sm font-semibold leading-6 text-gray-900">
+                                            Mensaje
+                                        </label>
+                                        <div class="mt-1">
+                                            <textarea name="message" id="message" rows="4" v-model="formContacto.mensaje"
+                                                class="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-[#01e6f8] placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-[#57c274] sm:text-sm sm:leading-6" />
+                                            <div v-if="formContacto.errors.mensaje">{{ formContacto.errors.mensaje }}</div>
+                                        </div>
+                                    </div>
+                                    <div class="flex items-center h-full align-middle sm:col-span-2">
+                                        <div
+                                            :class="recaptcha_error ? 'border border-red-500 rounded-md p-1 bg-red-200 text-red-700' : ''">
+                                            <Checkbox v-model="formContacto.googleRecaptcha" class="max-w-full" />
+                                            <span v-if="recaptcha_error" class="flex justify-around animate-pulse">
+                                                Confirma que no eres un robot</span>
+                                        </div>
+                                        <div class="flex justify-center w-full p-3 sm:flex sm:justify-end sm:p-3">
+                                            <button
+                                                @click="formContacto.googleRecaptcha ? enviaDatos() : recaptcha_error = true;"
+                                                class="w-full h-full sm:h-auto sm:w-auto rounded-md bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-3.5 py-2.5 text-center text-xl font-semibold text-white shadow-sm hover:bg-[#57c274] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#57c274]">
+                                                Enviar
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                            </form>
+                            </div>
                         </div>
                     </div>
                 </div>
