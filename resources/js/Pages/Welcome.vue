@@ -135,7 +135,7 @@ function scroll_right() {
                 <div
                     class="flex items-center justify-between h-full px-6 mx-auto align-middle max-w-7xl md:justify-start md:space-x-10 lg:px-8">
                     <div class="flex justify-start lg:w-0 lg:flex-1">
-                        <a href="#welcome">
+                        <a href="#welcomePanel">
                             <p class="text-4xl uppercase bg-clip font-black font-sans text-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8]"
                                 style="-webkit-background-clip: text;">
                                 SOFTDIN</p>
@@ -300,11 +300,10 @@ function scroll_right() {
                     </PopoverPanel>
                 </transition>
             </Popover>
-            <a name="welcome" />
             <main class="overflow-y-auto snap-mandatory snap-y max-h-[87vh] rounded-md">
+                <a name="welcomePanel" />
                 <!-- Hero section -->
                 <div class="snap-center relative h-[87vh] p-5 flex items-center justify-center">
-                    <a name="welcome" />
                     <div class="w-[100vw] max-w-[100vw] sm:px-6 lg:px-8">
                         <div class="relative w-full min-h-[80vh] shadow-xl sm:overflow-hidden sm:rounded-2xl">
                             <div class="absolute inset-0">
@@ -373,9 +372,10 @@ function scroll_right() {
                             </button>
                         </div>
                     </div>
-                    <a name="contacts"></a>
+
                 </div>
                 <!-- CTA Section -->
+                <a name="contacts"></a>
                 <div class="snap-center min-h-[87vh] bg-white flex justify-center align-middle">
                     <div
                         class="max-w-4xl sm:py-12 lg:flex lg:max-w-full lg:w-full lg:items-center lg:justify-between lg:px-8">
@@ -386,9 +386,9 @@ function scroll_right() {
                                 Dejanos brindarte mas informacion
                             </span>
                         </h2>
-                        <div class="space-y-4 sm:flex sm:space-x-5 sm:space-y-0">
+                        <div class="space-y-2 sm:flex sm:space-x-2 sm:space-y-0">
                             <div class="max-w-xl mx-auto lg:mr-0 lg:max-w-lg">
-                                <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+                                <div class="grid grid-cols-1 gap-x-8 gap-y-2 sm:grid-cols-2">
                                     <div>
                                         <label for="first-name" class="block text-sm font-semibold leading-6 text-gray-900">
                                             Nombres
