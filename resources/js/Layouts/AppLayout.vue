@@ -429,7 +429,15 @@ const items = ref([
                     </div>
                     <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
                         <!-- Current: "border-indigo-500 text-gray-900", Default: "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700" -->
-                        <Menubar :model="items" class="" />
+                        <Menubar :model="items" :pt="{
+                            root: () => ({
+                                class: 'bg-white'
+                            }),
+                            icon: () => ({
+                                class: 'text-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8]',
+                                style: '-webkit-background-clip: text'
+                            })
+                        }" />
                     </div>
                 </div>
                 <div class="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
@@ -481,7 +489,15 @@ const items = ref([
         </div>
     </Disclosure>
     <div class="sm:hidden border-b border-gray-200 shadow-md space-y-1 pb-4 pt-2">
-        <Menubar :model="items">
+        <Menubar :model="items" :pt="{
+            root: () => ({
+                class: 'bg-white'
+            }),
+            icon: () => ({
+                class: 'text-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8]',
+                style: '-webkit-background-clip: text'
+            })
+        }">
             <template #end>
                 <div class="flex items-center w-[60vw] justify-between">
                     <Link :href="route('dashboard')" class="">
