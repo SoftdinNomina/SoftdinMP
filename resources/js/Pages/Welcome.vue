@@ -42,24 +42,24 @@ const props = defineProps({
 });
 
 const downloads = [
-    // {
-    //     name: 'Nomina',
-    //     description: 'Escriba aqui una descripcion de nomina.',
-    //     href: '#',
-    //     icon: UsersIcon,
-    // },
-    // {
-    //     name: 'Presupuesto',
-    //     description: 'Escriba aqui una descripcion de presupuesto.',
-    //     href: '#',
-    //     icon: CurrencyDollarIcon,
-    // },
-    // {
-    //     name: 'Virtual',
-    //     description: "Escriba aqui una descripcion de virtual.",
-    //     href: '#',
-    //     icon: AtSymbolIcon,
-    // },
+    {
+        name: 'Nomina',
+        description: 'Escriba aqui una descripcion de nomina.',
+        href: '#',
+        icon: UsersIcon,
+    },
+    {
+        name: 'Presupuesto',
+        description: 'Escriba aqui una descripcion de presupuesto.',
+        href: '#',
+        icon: CurrencyDollarIcon,
+    },
+    {
+        name: 'Virtual',
+        description: "Escriba aqui una descripcion de virtual.",
+        href: '#',
+        icon: AtSymbolIcon,
+    },
     {
         name: 'Android',
         description: "Escriba aqui una descripcion de android.",
@@ -191,7 +191,7 @@ function scroll_right() {
                         <Link v-if="$page.props.auth.user" :href="route('dashboard')"
                             class="inline-flex justify-center gap-x-2 rounded-md bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-50">
                         Ir a dashboard</Link>
-                        <Menu as="div" class="relative inline-block text-left" v-if="canLogin">
+                        <Menu v-else as="div" class="relative inline-block text-left" v-if="canLogin">
                             <div>
                                 <MenuButton
                                     class="inline-flex w-full justify-center gap-x-2 rounded-md bg-gradient-to-r from-[#57c274] to-[#01e6f8] px-4 py-2 text-sm font-semibold text-white shadow-sm hover:bg-gray-50">
@@ -244,11 +244,9 @@ function scroll_right() {
                             <div class="px-5 pt-5 pb-6">
                                 <div class="flex items-center justify-between">
                                     <div>
-                                        <a href="#welcomePanel">
                                         <p class="font-sans text-4xl font-black text-transparent uppercase bg-clip bg-gradient-to-r from-[#57c274] to-[#01e6f8]"
                                             style="-webkit-background-clip: text;">
                                             SOFTDIN</p>
-                                        </a>
                                     </div>
                                     <div class="-mr-2">
                                         <PopoverButton
@@ -282,14 +280,14 @@ function scroll_right() {
                                         class="text-base font-medium text-gray-900 hover:text-gray-700">WebMail</a>
                                 </div>
                                 <div class="mt-6" v-if="canLogin">
-                                    <a :href="route('login')"
+                                    <a href="#"
                                         class="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8] bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-[#01e6f8] hover:to-[#57c274]">
                                         <BuildingOffice2Icon class="w-5 h-5 mr-3 text-white group-hover:text-gray-500"
                                             aria-hidden="true" />
                                         Portal de empresa
                                     </a>
                                     <p class="mt-6 text-base font-medium text-center text-gray-500">
-                                        <a :href="route('login')"
+                                        <a href="#"
                                             class="flex w-full items-center justify-center rounded-md border border-transparent bg-gradient-to-r from-[#57c274] to-[#01e6f8] bg-origin-border px-4 py-2 text-base font-medium text-white shadow-sm hover:from-[#01e6f8] hover:to-[#57c274]">
                                             <UsersIcon class="w-5 h-5 mr-3 text-white group-hover:text-gray-500"
                                                 aria-hidden="true" />
@@ -350,11 +348,11 @@ function scroll_right() {
                             liquidación de las prestaciones sociales y seguridad social, para empresas y cooperativas de
                             trabajo
                             asociado.</p>
-                        <div class="flex mt-12 space-x-2">
+                        <div class="flex mt-12 space-x-2 min-w-[96vw] border border-red-500">
                             <button @click="scroll_left">
                                 <ArrowLeftCircleIcon class="w-8 h-8 text-white hover:animate-pulse hover:scale-105"/>
                             </button>
-                            <div class="flex gap-2 p-1 overflow-y-auto snap-mandatory snap-x wrapper-box">
+                            <div class="flex gap-2 p-1 overflow-y-auto snap-mandatory snap-x w-full">
                                 <div v-for="feature in features" :key="feature.name"
                                     class="border border-gray-100 shadow-md min-w-[60vw] sm:min-w-[28vw] snap-center bg-white bg-opacity-10 rounded-lg text-center p-2">
                                     <div class="flex items-center gap-2">
